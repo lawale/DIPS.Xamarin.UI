@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 [assembly: Preserve]
 [assembly:InternalsVisibleTo("DIPS.Xamarin.UI.Tests")]
+[assembly:InternalsVisibleTo("DIPS.Xamarin.UI.Android")]
 
 //Add new namespaces below to make them visible when using Custom Namespace : https://github.com/DIPSAS/DIPS.Xamarin.UI/issues/1
 

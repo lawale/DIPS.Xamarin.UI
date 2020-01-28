@@ -4,7 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:dxui="http://dips.xamarin.ui.com"
+             xmlns:Pdf="clr-namespace:DIPS.Xamarin.UI.Samples.Controls.Pdf;assembly=DIPS.Xamarin.UI.Samples"
              mc:Ignorable="d"
              x:Class="DIPS.Xamarin.UI.Samples.Controls.Pdf.PdfViewerPage">
-    <dxui:PdfViewer />
+    <ContentPage.BindingContext>
+        <Pdf:PdfViewerPageViewModel/>
+    </ContentPage.BindingContext>
+    <dxui:PdfViewer PdfContent="{Binding PdfContent}"/>
 </ContentPage>

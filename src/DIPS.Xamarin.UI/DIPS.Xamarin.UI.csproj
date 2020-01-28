@@ -27,9 +27,6 @@
     <Compile Update="Controls\Modality\ModalityLayout.xaml.cs">
       <DependentUpon>ModalityLayout.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Controls\Pdf\PdfViewer.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
     <Compile Update="Controls\Popup\PopupLayout.xaml.cs">
       <DependentUpon>PopupLayout.xaml</DependentUpon>
     </Compile>
@@ -44,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Controls\Pdf\PdfViewer.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Internal\Xaml\RadioButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

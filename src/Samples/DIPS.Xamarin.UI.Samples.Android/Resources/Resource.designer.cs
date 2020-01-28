@@ -1289,6 +1289,7 @@ namespace DIPS.Xamarin.UI.Samples.Droid
 			global::DIPS.Xamarin.UI.Android.Resource.Layout.notification_template_media_custom = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.notification_template_media_custom;
 			global::DIPS.Xamarin.UI.Android.Resource.Layout.notification_template_part_chronometer = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.notification_template_part_chronometer;
 			global::DIPS.Xamarin.UI.Android.Resource.Layout.notification_template_part_time = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.notification_template_part_time;
+			global::DIPS.Xamarin.UI.Android.Resource.Layout.PdfViewerLayout = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.PdfViewerLayout;
 			global::DIPS.Xamarin.UI.Android.Resource.Layout.RootLayout = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.RootLayout;
 			global::DIPS.Xamarin.UI.Android.Resource.Layout.select_dialog_item_material = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.select_dialog_item_material;
 			global::DIPS.Xamarin.UI.Android.Resource.Layout.select_dialog_multichoice_material = global::DIPS.Xamarin.UI.Samples.Droid.Resource.Layout.select_dialog_multichoice_material;
@@ -10145,28 +10146,31 @@ namespace DIPS.Xamarin.UI.Samples.Droid
 			public const int notification_template_part_time = 2131427404;
 			
 			// aapt resource value: 0x7F0B004D
-			public const int RootLayout = 2131427405;
+			public const int PdfViewerLayout = 2131427405;
 			
 			// aapt resource value: 0x7F0B004E
-			public const int select_dialog_item_material = 2131427406;
+			public const int RootLayout = 2131427406;
 			
 			// aapt resource value: 0x7F0B004F
-			public const int select_dialog_multichoice_material = 2131427407;
+			public const int select_dialog_item_material = 2131427407;
 			
 			// aapt resource value: 0x7F0B0050
-			public const int select_dialog_singlechoice_material = 2131427408;
+			public const int select_dialog_multichoice_material = 2131427408;
 			
 			// aapt resource value: 0x7F0B0051
-			public const int ShellContent = 2131427409;
+			public const int select_dialog_singlechoice_material = 2131427409;
 			
 			// aapt resource value: 0x7F0B0052
-			public const int support_simple_spinner_dropdown_item = 2131427410;
+			public const int ShellContent = 2131427410;
 			
 			// aapt resource value: 0x7F0B0053
-			public const int Tabbar = 2131427411;
+			public const int support_simple_spinner_dropdown_item = 2131427411;
 			
 			// aapt resource value: 0x7F0B0054
-			public const int Toolbar = 2131427412;
+			public const int Tabbar = 2131427412;
+			
+			// aapt resource value: 0x7F0B0055
+			public const int Toolbar = 2131427413;
 			
 			static Layout()
 			{

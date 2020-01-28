@@ -26,7 +26,10 @@
                     CommandParameter="RadioButtonGroup" />
             <Button Text="Trend graph"
                     Command="{Binding NavigateToCommand}"
-                    CommandParameter="TrendGraph" />
+                    CommandParameter="TrendGraph"/>
+            <Button Text="Pdf"
+                    Command="{Binding NavigateToCommand}"
+                    CommandParameter="PdfViewer" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,6 +2,8 @@
 
 using Android.App;
 using Android.Content.PM;
+using Android.Graphics;
+using Android.Graphics.Pdf;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;

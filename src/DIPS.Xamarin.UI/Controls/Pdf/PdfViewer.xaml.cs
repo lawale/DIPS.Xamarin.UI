@@ -19,6 +19,27 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
             InitializeComponent();
         }
 
+        public static readonly BindableProperty PdfFilePathProperty = BindableProperty.Create(nameof(PdfFilePath), typeof(string), typeof(PdfViewer), propertyChanged:OnPdfFilePathPropertyChanged);
+
+        private static void OnPdfFilePathPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            if (!(bindable is PdfViewer pdfViewer)) return;
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                pdfViewer.PdfRenderer.ShowPdf((string)newvalue);
+            }
+            else
+            {
+                pdfViewer.PdfWebView.ShowPdf((string)newvalue);
+            }
+        }
+
+        public string PdfFilePath
+        {
+            get => (string)GetValue(PdfFilePathProperty);
+            set => SetValue(PdfFilePathProperty, value);
+        }
+
         public static readonly BindableProperty PdfContentProperty = BindableProperty.Create(nameof(PdfContent), typeof(byte[]), typeof(PdfViewer), propertyChanged:OnPdfContentPropertyChanged);
         
 
@@ -47,6 +68,7 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
             PdfRenderer.TranslationY = 0;
             PdfRenderer.Scale = 1;
             slider.Value = 1;
+            ZoomContainer.Reset();
         }
     }
 }

@@ -1,31 +1,42 @@
 ﻿using System;
+using System.IO;
+using DIPS.Xamarin.UI.Controls.Pdf.Events;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace DIPS.Xamarin.UI.Controls.Pdf
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public class PdfRenderer : ContentView
+    internal class PdfRenderer : ContentView
     {
-        internal event EventHandler<ShowPdfEventArgs>? OnShowPdf;
-        public void ShowPdf(byte[] content)
+        private int m_pageCount;
+        internal event EventHandler<PfdContentEventArgs>? OnShowPdfFromContent;
+        internal event EventHandler<PdfFileEventArgs>? OnShowPdfFromFile;
+
+        public static readonly BindableProperty PageCountProperty = BindableProperty.Create(nameof(PageCount), typeof(int), typeof(PdfRenderer));
+
+        public int PageCount
         {
-            OnShowPdf?.Invoke(this, new ShowPdfEventArgs(content));
+            get => (int)GetValue(PageCountProperty);
+            set => SetValue(PageCountProperty, value);
         }
 
-        public void ZoomPdf()
+        public static readonly BindableProperty CurrentPageIndexProperty = BindableProperty.Create(nameof(CurrentPageIndex), typeof(int), typeof(PdfRenderer));
+
+        public int CurrentPageIndex
         {
-            
+            get => (int)GetValue(CurrentPageIndexProperty);
+            set => SetValue(CurrentPageIndexProperty, value);
         }
-    }
 
-    internal class ShowPdfEventArgs : EventArgs
-    {
-        public byte[] Content { get; }
-
-        public ShowPdfEventArgs(byte[] content)
+        internal void ShowPdf(byte[] content)
         {
-            Content = content;
+            OnShowPdfFromContent?.Invoke(this, new PfdContentEventArgs(content));
+        }
+
+        internal void ShowPdf(string filePath)
+        {
+            OnShowPdfFromFile?.Invoke(this, new PdfFileEventArgs(filePath));
         }
     }
 }

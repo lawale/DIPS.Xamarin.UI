@@ -17,13 +17,13 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
 
         public ZoomContainer()
         {
-            var pinchGesture = new PinchGestureRecognizer();
+            //var pinchGesture = new PinchGestureRecognizer();
             var panGesture = new PanGestureRecognizer();
 
             //pinchGesture.PinchUpdated += OnPinchUpdated;
             panGesture.PanUpdated += OnPanUpdated;
 
-            GestureRecognizers.Add(pinchGesture);
+            //GestureRecognizers.Add(pinchGesture);
             GestureRecognizers.Add(panGesture);
         }
 
@@ -112,6 +112,12 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
                 m_xOffset = Content.TranslationX;
                 m_yOffset = Content.TranslationY;
             }
+        }
+
+        public void Reset()
+        {
+            m_xOffset = 0;
+            m_yOffset = 0;
         }
     }
 }

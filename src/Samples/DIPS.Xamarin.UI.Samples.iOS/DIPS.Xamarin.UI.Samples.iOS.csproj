@@ -143,4 +143,5 @@
       <Name>DIPS.Xamarin.UI.Samples</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>

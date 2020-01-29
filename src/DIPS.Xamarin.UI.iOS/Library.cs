@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using DIPS.Xamarin.UI.iOS.Pdf;
+using Foundation;
 using UIKit;
 
 namespace DIPS.Xamarin.UI.iOS
@@ -13,6 +14,7 @@ namespace DIPS.Xamarin.UI.iOS
         /// </summary>
         public static void Initialize()
         {
+            PdfWebViewRenderer.Initialize();
         }
     }
 }

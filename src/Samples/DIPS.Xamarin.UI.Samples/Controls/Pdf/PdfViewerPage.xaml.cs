@@ -32,11 +32,18 @@ namespace DIPS.Xamarin.UI.Samples.Controls.Pdf
     public class PdfViewerPageViewModel : INotifyPropertyChanged
     {
         private byte[] m_pdfContent;
+        private string m_pdfFilePath;
 
         public byte[] PdfContent
         {
             get => m_pdfContent;
             set => PropertyChanged.RaiseWhenSet(ref m_pdfContent, value);
+        }
+
+        public string PdfFilePath
+        {
+            get => m_pdfFilePath;
+            set => PropertyChanged.RaiseWhenSet(ref m_pdfFilePath, value);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -53,6 +60,8 @@ namespace DIPS.Xamarin.UI.Samples.Controls.Pdf
                 var data = JsonConvert.DeserializeObject<GetDocumentMetadataResponse>(json);
                 PdfContent = data.DocumentMetadataInfo.Content;
             }
+
+            
         }
     }
 }

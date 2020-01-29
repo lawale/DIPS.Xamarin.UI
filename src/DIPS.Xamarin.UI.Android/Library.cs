@@ -1,4 +1,5 @@
 ﻿using Android.Graphics.Pdf;
+using DIPS.Xamarin.UI.Android.Pdf;
 
 namespace DIPS.Xamarin.UI.Android
 {
@@ -13,6 +14,7 @@ namespace DIPS.Xamarin.UI.Android
         /// </summary>
         public static void Initialize()
         {
+            PdfRendererImplementation.Initialize();
         }
     }
 }

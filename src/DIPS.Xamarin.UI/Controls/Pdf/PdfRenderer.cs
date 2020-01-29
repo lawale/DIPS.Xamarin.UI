@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using DIPS.Xamarin.UI.Controls.Pdf.Events;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,11 +8,18 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
     [XamlCompilation(XamlCompilationOptions.Compile)]
     internal class PdfRenderer : ContentView
     {
-        private int m_pageCount;
-        internal event EventHandler<PfdContentEventArgs>? OnShowPdfFromContent;
-        internal event EventHandler<PdfFileEventArgs>? OnShowPdfFromFile;
-
         public static readonly BindableProperty PageCountProperty = BindableProperty.Create(nameof(PageCount), typeof(int), typeof(PdfRenderer));
+
+        public static readonly BindableProperty CurrentPageIndexProperty = BindableProperty.Create(
+            nameof(CurrentPageIndex),
+            typeof(int),
+            typeof(PdfRenderer));
+
+        public int CurrentPageIndex
+        {
+            get => (int)GetValue(CurrentPageIndexProperty);
+            set => SetValue(CurrentPageIndexProperty, value);
+        }
 
         public int PageCount
         {
@@ -21,13 +27,9 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
             set => SetValue(PageCountProperty, value);
         }
 
-        public static readonly BindableProperty CurrentPageIndexProperty = BindableProperty.Create(nameof(CurrentPageIndex), typeof(int), typeof(PdfRenderer));
-
-        public int CurrentPageIndex
-        {
-            get => (int)GetValue(CurrentPageIndexProperty);
-            set => SetValue(CurrentPageIndexProperty, value);
-        }
+        internal event EventHandler<PfdContentEventArgs>? OnShowPdfFromContent;
+        internal event EventHandler<PdfFileEventArgs>? OnShowPdfFromFile;
+        internal event EventHandler<PdfZoomEventArgs>? OnZoomPdf;
 
         internal void ShowPdf(byte[] content)
         {
@@ -37,6 +39,11 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
         internal void ShowPdf(string filePath)
         {
             OnShowPdfFromFile?.Invoke(this, new PdfFileEventArgs(filePath));
+        }
+
+        internal void ZoomPdf(double zoomFactor)
+        {
+            OnZoomPdf?.Invoke(this, new PdfZoomEventArgs(zoomFactor));
         }
     }
 }

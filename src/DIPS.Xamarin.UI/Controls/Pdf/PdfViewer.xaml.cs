@@ -57,9 +57,10 @@ namespace DIPS.Xamarin.UI.Controls.Pdf
 
         private void Slider_OnValueChanged(object sender, ValueChangedEventArgs e)
         {
-            PdfRenderer.AnchorX = 0;
-            PdfRenderer.AnchorY = 0;
-            PdfRenderer.Scale = e.NewValue;
+            //PdfRenderer.AnchorX = 0;
+            //PdfRenderer.AnchorY = 0;
+            //PdfRenderer.Scale = e.NewValue;
+            PdfRenderer.ZoomPdf(e.NewValue);
         }
 
         private void Reset(object sender, EventArgs e)

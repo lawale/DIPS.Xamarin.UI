@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Graphics.Pdf;
 using Android.OS;
 using Android.Widget;
@@ -40,9 +41,15 @@ namespace DIPS.Xamarin.UI.Android.Pdf
             {
                 m_formsPdfRenderer.OnShowPdfFromContent += ShowFormsPdfFromContent;
                 m_formsPdfRenderer.OnShowPdfFromFile += ShowFormsPdfFromFile;
+                m_formsPdfRenderer.OnZoomPdf += ZoomPdf;
                 m_imageView = new ImageView(Context);
                 SetNativeControl(m_imageView);
             }
+        }
+
+        private void ZoomPdf(object sender, PdfZoomEventArgs e)
+        {
+            AddCurrentPageToImage((int)e.ZoomFactor);   
         }
 
         private void ShowFormsPdfFromFile(object sender, PdfFileEventArgs e)
@@ -72,6 +79,7 @@ namespace DIPS.Xamarin.UI.Android.Pdf
 
             m_formsPdfRenderer.OnShowPdfFromContent -= ShowFormsPdfFromContent;
             m_formsPdfRenderer.OnShowPdfFromFile -= ShowFormsPdfFromFile;
+            m_formsPdfRenderer.OnZoomPdf -= ZoomPdf;
 
             m_currentPage?.Close();
             m_pdfRenderer?.Close();
@@ -88,24 +96,20 @@ namespace DIPS.Xamarin.UI.Android.Pdf
             m_currentPage?.Close();
             m_currentPage = m_pdfRenderer.OpenPage(0);
 
+            AddCurrentPageToImage();
+
+            m_formsPdfRenderer.PageCount = m_pdfRenderer.PageCount;
+            m_formsPdfRenderer.CurrentPageIndex = m_currentPage.Index+1;
+        }
+
+        private void AddCurrentPageToImage(int zoomFactor = 1)
+        {
             // Create a new bitmap and render the page contents on to it
-            var bitmap = Bitmap.CreateBitmap(m_currentPage.Width, m_currentPage.Height, Bitmap.Config.Argb8888);
+            var bitmap = Bitmap.CreateBitmap(m_currentPage.Width*zoomFactor, m_currentPage.Height*zoomFactor, Bitmap.Config.Argb8888);
             m_currentPage.Render(bitmap, null, null, PdfRenderMode.ForDisplay);
 
             // Set the bitmap in the ImageView so we can view it
             m_imageView.SetImageBitmap(bitmap);
-
-            m_formsPdfRenderer.PageCount = m_pdfRenderer.PageCount;
-            m_formsPdfRenderer.CurrentPageIndex = m_currentPage.Index+1;
-
-            //No need to keep the renderer open if it only has one page, if it has more it might be needed again if people want to change page in the human interface
-            if (m_pdfRenderer.PageCount == 1)
-            {
-                m_currentPage.Close();
-                m_currentPage = null;
-                m_pdfRenderer.Close();
-                m_pdfRenderer = null;
-            }
         }
 
         /// <summary>
